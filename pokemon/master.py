@@ -22,10 +22,10 @@ def get_pokemon(pid=None,name=None,pokemons=None):
 
     # Next see if they want a random pokemon
     if pid == None:
-        pid = numpy.random.choice(pokemons.keys())
+        pid = numpy.random.choice(list(pokemons.keys()))
 
     # Retrieve the random, or user selected pokemon
-    if pid != None and str(pid) in pokemons.keys():
+    if pid != None and str(pid) in list(pokemons.keys()):
         return {pid:pokemons[str(pid)]}
 
     else:
@@ -52,7 +52,7 @@ def lookup_pokemon(field,value,pokemons=None):
         pokemons = catch_em_all()
 
     catches = {}
-    for pid,data in pokemons.iteritems():
+    for pid,data in pokemons.items():
         if isinstance(data[field],list):
             for entry in data[field]:
                 found = search_entry(entry,value)        
@@ -71,7 +71,7 @@ def search_entry(field,value):
     if isinstance(field,float) or isinstance(field,int):
         if field == value:
             return True
-    elif isinstance(field,str) or isinstance(field,unicode):
+    elif isinstance(field,str) or isinstance(field,str):
         if field.lower() == value.lower():
             return True
     return False

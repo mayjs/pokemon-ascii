@@ -11,10 +11,10 @@ def get_ascii(pid=None,name=None,pokemons=None,return_pokemons=False,message=Non
     pokemon = get_pokemon(name=name,pid=pid,pokemons=pokemons)
     printme = message
     if len(pokemon) > 0:
-        for pid,data in pokemon.iteritems():
+        for pid,data in pokemon.items():
             if message == None:
                 printme = data["name"].capitalize()
-            print "%s\n\n%s" %(data['ascii'],printme)
+            print("%s\n\n%s" %(data['ascii'],printme))
           
     if return_pokemons == True:
         return pokemon  
@@ -36,6 +36,6 @@ def get_avatar(string,pokemons=None,print_screen=True,include_name=True):
     if include_name == True:
         avatar = "%s\n\n%s" %(avatar,string.split("@")[0])
     if print_screen == True:
-        print avatar    
+        print(avatar)    
     else:
         return avatar

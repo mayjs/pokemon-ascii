@@ -29,7 +29,7 @@ def map_pixels_to_ascii_chars(image, range_width=25):
     """
 
     pixels_in_image = list(image.getdata())
-    pixels_to_chars = [ASCII_CHARS[pixel_value/range_width] for pixel_value in
+    pixels_to_chars = [ASCII_CHARS[int(pixel_value/range_width)] for pixel_value in
             pixels_in_image]
 
     return "".join(pixels_to_chars)
@@ -42,7 +42,7 @@ def convert_image_to_ascii(image, new_width):
     len_pixels_to_chars = len(pixels_to_chars)
 
     image_ascii = [pixels_to_chars[index: index + new_width*2] for index in
-            xrange(0, len_pixels_to_chars, new_width*2)]
+            range(0, len_pixels_to_chars, new_width*2)]
 
     return "\n".join(image_ascii)
 
@@ -50,13 +50,13 @@ def handle_image_conversion(image_filepath,new_width=100):
     image = None
     try:
         image = Image.open(image_filepath)
-    except Exception, e:
-        print "Unable to open image file {image_filepath}.".format(image_filepath=image_filepath)
-        print e
+    except Exception as e:
+        print("Unable to open image file {image_filepath}.".format(image_filepath=image_filepath))
+        print(e)
         return
 
     image_ascii = convert_image_to_ascii(image,new_width)
-    print image_ascii
+    print(image_ascii)
     return image_ascii
 
 if __name__=='__main__':

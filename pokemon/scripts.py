@@ -35,7 +35,7 @@ def main():
 
     elif args.catch == True:
         catch = get_pokemon()
-        get_ascii(pid=catch.keys()[0],message=args.message)
+        get_ascii(pid=list(catch.keys())[0],message=args.message)
 
 if __name__ == '__main__':
     main()
